@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:weather_app/weatherlist.dart';
 
-// import 'weatherlist.dart';
-
 class LogIn extends StatefulWidget {
   Database database;
 
@@ -14,8 +12,8 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  TextEditingController t = TextEditingController();
   TextEditingController t1 = TextEditingController();
+  TextEditingController t2 = TextEditingController();
   String email = "";
   String pasword = "";
 
@@ -41,7 +39,9 @@ class _LogInState extends State<LogIn> {
       backgroundColor: Colors.white,
       body: SafeArea(
           child: SingleChildScrollView(
-        child: FutureBuilder(future: getdata(),builder: (context, snapshot) {
+              child: FutureBuilder(
+        future: getdata(),
+        builder: (context, snapshot) {
           return Column(
             children: [
               SizedBox(
@@ -67,22 +67,46 @@ class _LogInState extends State<LogIn> {
                 height: 50,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: TextFormField(
-                  controller: t,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: t1,
+                  cursorColor: Color(0xff808080),
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: "Email"),
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff808080)),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff808080)),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: "Email",
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: TextFormField(
-                  controller: t1,
+                padding: const EdgeInsets.only(right: 18, left: 18, top: 15),
+                child: TextField(
+                  obscureText: true,
+                  obscuringCharacter: "*",
+                  keyboardType: TextInputType.visiblePassword,
+                  controller: t2,
+                  cursorColor: Color(0xff808080),
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: "password"),
+                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff808080)),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xff808080)),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    contentPadding: EdgeInsets.all(10),
+                    hintText: "Password",
+                  ),
                 ),
               ),
               SizedBox(
@@ -90,38 +114,62 @@ class _LogInState extends State<LogIn> {
               ),
               InkWell(
                 onTap: () {
-                  if(snapshot.connectionState==ConnectionState.done)
-                    {
-                      List l = snapshot.data;
-                      print(l);
-                      if(l.contains(t.text) && l.contains(t1.text))
-                        {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                            return WeatherList();
-                          },));
-                        }
-                    }
-                   // dhhcjdoOjcbdbd djhcjdjshc
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    List l = snapshot.data;
+                    print(l);
+
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return WeatherList();
+                    }));
+                  }
+
                 },
-                child: Container(
-                  margin: EdgeInsets.only(left: 20, right: 20),
-                  height: 60,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      gradient: LinearGradient(
-                          colors: [Colors.blueAccent, Colors.lightBlueAccent])),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Ink(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0xff47BFDF), Color(0xff4A91FF)])),
+                    child: Center(
+                        child: Text(
+                      "Login",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    )),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 120,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text("Don’t have an account?")),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                          disabledForegroundColor: Colors.transparent),
+                      onPressed: () {
+                        print("This is one more");
+                        // Navigator.pushReplacement(context, MaterialPageRoute(b,))
+                      },
+                      child: Text(
+                        "Signup", //
+                        style: TextStyle(color: Colors.blue, fontSize: 14),
+                      ))
+                ],
               )
             ],
           );
-        },)
-      )),
+        },
+      ))),
     );
   }
 }

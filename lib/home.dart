@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'congratulation.dart';
+import 'Success.dart';
 import 'signuppage.dart';
 
 
@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   datas() async {
     // Get a location using getDatabasesPath
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'dp.db');
+    String path = join(databasesPath, 'ht.db');
 
 // open the database
     database = await openDatabase(path, version: 1,

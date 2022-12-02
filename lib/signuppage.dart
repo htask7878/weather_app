@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
-// import 'congratulation.dart';
+// import 'Success.dart';
+import 'Success.dart';
 import 'loginpage.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   List countryList = ["India", "USA", "Canada", "UK", "Australia"];
   String? currentCountry;
   String country = "country";
-  bool check = false;
+  bool isCheck = false;
 
   countryMenu() {
     return countryList
@@ -32,16 +33,16 @@ class _SignUpPageState extends State<SignUpPage> {
 
   signup() {
     if (t1.text == "") {
-      check = false;
+      isCheck = false;
     } else if (t2.text == "") {
-      check = false;
+      isCheck = false;
     } else if (t3.text == "") {
-      check = false;
+      isCheck = false;
     } else if (t4.text == "") {
-      check = false;
+      isCheck = false;
     } else {
       setState(() {
-        check = true;
+        isCheck = true;
       });
     }
   }
@@ -77,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only( top: 15,left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: TextFormField(
                   keyboardType: TextInputType.text,
                   controller: t1,
@@ -96,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only( top: 15,left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: TextFormField(
                   keyboardType: TextInputType.phone,
                   controller: t2,
@@ -115,7 +116,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only( top: 15,left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: Container(
                   height: 50,
                   width: double.infinity,
@@ -139,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only( top: 15,left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   controller: t3,
@@ -158,7 +159,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only( top: 15,left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
                 child: TextFormField(
                   obscureText: true,
                   obscuringCharacter: "*",
@@ -186,36 +187,38 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               InkWell(
                 onTap: () async {
-                  // String nam = t.text;
-                  // String num = t1.text;
-                  // String countryname = country;
-                  // String Email = t2.text;
-                  // String pasword = t3.text;
-                  //
-                  // String sql =
-                  //     " insert into user values(null,'$nam','$num','$countryname','$Email','$pasword')";
-                  // print(sql);
-                  // int r_id = await widget.database.rawInsert(sql);
-                  // print(r_id);
-                  // if (r_id != null) {
-                  //   Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) {
-                  //       return Congratulation(widget.database);
-                  //     },
-                  //   ));
-                  // }
-                  Navigator.pushReplacement(context, MaterialPageRoute(
-                    builder: (context) {
-                      return LogIn(widget.database);
-                    },
-                  ));
+                  if (t1.text != "" &&
+                      t2.text != "" &&
+                      t3.text != "" &&
+                      t4.text != "" &&
+                      country != "") {
+                    String nam = t1.text;
+                    String num = t2.text;
+                    String countryName = country;
+                    String Email = t3.text;
+                    String pasword = t4.text;
+
+                    String sql =
+                        " insert into user values(null,'$nam','$num','$countryName','$Email','$pasword')";
+                    print(sql);
+                    int r_id = await widget.database.rawInsert(sql);
+                    print(r_id);
+
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return Success(widget.database);
+                      },
+                    ));
+                  } else {
+                    print("This is not Possible");
+                  }
                 },
                 child: Container(
                   height: 50,
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(left: 20, right: 20),
                   decoration: BoxDecoration(
-                    gradient: check
+                    gradient: isCheck
                         ? LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -229,7 +232,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
@@ -246,7 +251,16 @@ class _SignUpPageState extends State<SignUpPage> {
                         style: TextButton.styleFrom(
                             fixedSize: Size(10, 0),
                             disabledForegroundColor: Colors.transparent),
-                        onPressed: () {},
+                        onPressed: () {
+                          if (widget.database != null) {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return LogIn(widget.database);
+                              },
+                            ));
+                          }
+                        },
                         child: Text(
                           "Log in", //
                           style: TextStyle(color: Colors.blue, fontSize: 14),
