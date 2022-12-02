@@ -16,6 +16,8 @@ class _LogInState extends State<LogIn> {
   TextEditingController t2 = TextEditingController();
   String email = "";
   String pasword = "";
+  List emailList = [];
+  List passwordList = [];
 
   @override
   void initState() {
@@ -23,8 +25,6 @@ class _LogInState extends State<LogIn> {
     super.initState();
     getdata();
   }
-
-  List<Map> list = [];
 
   Future getdata() async {
     String sql = " select * from user";
@@ -118,12 +118,19 @@ class _LogInState extends State<LogIn> {
                     List l = snapshot.data;
                     print(l);
 
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return WeatherList();
-                    }));
-                  }
+                    l.forEach((element) {
+                      emailList.add(element['email']);
+                      passwordList.add(element['password']);
+                    });
 
+                    if (emailList.contains(t1.text) &&
+                        passwordList.contains(t2.text)) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return WeatherList();
+                      }));
+                    }
+                  }
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
