@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 
-// import 'Success.dart';
 import 'Success.dart';
 import 'loginpage.dart';
 

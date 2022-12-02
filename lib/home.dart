@@ -2,10 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:weather_app/loginpage.dart';
 
-import 'Success.dart';
 import 'signuppage.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -20,10 +19,10 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    datas();
+    dataBase();
   }
 
-  datas() async {
+  dataBase() async {
     // Get a location using getDatabasesPath
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'ht.db');
@@ -99,9 +98,9 @@ class _HomeState extends State<Home> {
                               colors: [Color(0xff47BFDF), Color(0xff4A91FF)])),
                       child: Center(
                           child: Text(
-                            "Get start",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          )),
+                        "Get start",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      )),
                     )),
                 SizedBox(
                   height: 8,
@@ -118,7 +117,7 @@ class _HomeState extends State<Home> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Success(database!),
+                                builder: (context) => LogIn(database!),
                               ));
                         },
                         child: Text(

@@ -14,9 +14,10 @@ class _WeatherListState extends State<WeatherList> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          padding: EdgeInsets.all(40),
-          decoration: BoxDecoration(
+        decoration: BoxDecoration(
               gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                   colors: [Color(0xFF47BFDF), Color(0xFF4A91FF)])),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -30,22 +31,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.day_sunny,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Sunny",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+                    Text(
+                      "Sunny",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -59,22 +58,21 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.cloud_refresh,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Partly",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+
+                    Text(
+                      "Partly",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -88,22 +86,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.cloud,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Cloudy",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 28,),
+                    Text(
+                      "Cloudy",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -117,22 +113,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.rain,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Rainy",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+                    Text(
+                      "Rainy",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -146,22 +140,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.snow,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Snow",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+                    Text(
+                      "Snow",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -175,22 +167,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.storm_showers,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Stromy",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+                    Text(
+                      "Stormy",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
@@ -204,22 +194,20 @@ class _WeatherListState extends State<WeatherList> {
                   ));
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 60,
+                      height: 55,
                       width: 60,
                       child: BoxedIcon(
                         WeatherIcons.thunderstorm,
                         color: Colors.amber,
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Thunder",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                    SizedBox(width: 30,),
+                    Text(
+                      "Thunder",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
