@@ -36,6 +36,13 @@ class _HomeState extends State<Home> {
     });
   }
 
+  getdata()
+  async {
+    String qry  = "select *from user";
+    List<Map> l = await database!.rawQuery(qry) ;
+    return l;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +74,7 @@ class _HomeState extends State<Home> {
                   height: 8,
                 ),
                 Container(
+
                     margin: EdgeInsets.only(left: 15, right: 15),
                     child: AutoSizeText(
                         textAlign: TextAlign.start,
@@ -125,7 +133,7 @@ class _HomeState extends State<Home> {
                           style: TextStyle(color: Colors.blue, fontSize: 14),
                         ))
                   ],
-                )
+                ),
               ],
             ),
           ),
